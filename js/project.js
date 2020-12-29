@@ -119,13 +119,25 @@ function show_date_time() {
 	for (var i = 0; i < tm.length; i++) {
 		tm[i].innerText = "PandaDecSt的主页存活了" + getDateDiff(tm[i].title);
 	}
+	//window.setTimeout("show_date_time()", 1000);
+}
+var show_date_timer = setInterval(show_date_time, 1000);
+//访问次数
+function show_count(){
     var ct = document.getElementsByName('show_count');
     for (var i = 0; i < ct.length; i++) {
         ct[i].innerText = "网页访问次数:" + last.cont;
 	}
-	//window.setTimeout("show_date_time()", 1000);
 }
-var show_date_timer = setInterval(show_date_time, 1000);
+var show_counter = setInterval(show_count, 1000);
+//上次访问时间
+function show_last_time(){
+    var lt = document.getElementsByName('last_time');
+    for (var i = 0; i < lt.length; i++) {
+        lt[i].innerText = "上一次访问是在" + last.day;
+	}
+}
+var show_last_timer = setInterval(show_last_time, 1000);
 
 function checkTime(i) {
 	if (i < 10) {
