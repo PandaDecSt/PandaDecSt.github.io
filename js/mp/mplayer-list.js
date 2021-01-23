@@ -33,6 +33,13 @@ var mplayer_song = [
             "img": "image/pic/head.jpg"
         },
         {
+            "name": "精神污染",
+            "singer": "PandaDecSt",
+            "img": "http://s4.music.126.net/style/web2/img/default/default_list.jpg?param=177y177",
+            "src": "audio/cs.mp3",
+            "lrc": "[00:00.00]纯音乐木有歌词",
+        },
+        {
             "name": "Love is gone",
             "singer": "SLANDER",
             "img": "http://s4.music.126.net/style/web2/img/default/default_list.jpg?param=177y177",
