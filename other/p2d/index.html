@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            .hide{
+                display: block;
+            }
+            canvas {
+                cursor: pointer;
+            }
+</style>
+  </head>
+  <body>
+    <canvas width="800" height="800" id="cas"></canvas>
+    <canvas width="800" height="800" id="cas2"></canvas>
+<script>
+/*
+ **im04提供图像扭曲算法
+ **im04的主页:https://github.com/im04
+ */
+var canvas2 = document.getElementById('cas2');
+var ctx2 = canvas2.getContext('2d');
+
+var canvas = document.getElementById('cas');
+var ctx = canvas.getContext('2d');
+
+var img = new Image();
+var em = new Image();
+img.widht = 400;
+em.widht = 400;
+
+var tf;
+var bf;
+window.onload = function() {
+   // ctx.drawImage(img, 0, 0);
+    //ctx2.drawImage(em, 0, 0, 800, 800);
+    var body = getImgPartdata(canvas2, em, 29, 59, 384, 382);
+    ctx.putImageData(body, 0, 0);
+    //var face = getImgPartdata(canvas2, em, 391, 692, 547, 880);
+    tf = new transformCanvas(canvas, 0, 0, canvas.width, canvas.height);
+};
+img.src = './qq.png';
+em.src = './e.png';
+
+function transformCanvas (canvas, x, y, w, h, d) {
+    var D = d || 30,
+        width = w,
+        height = h,
+        ctx = canvas.getContext('2d'),
+        pixelsCopy = ctx.getImageData(x, y, canvas.width, canvas.height);
+
+    this.smear = function smear(X, Y) {
+        var MX = X,
+            MY = Y,
+            pixels = ctx.getImageData(x, y, width, height),
+            data = pixels.data,
+            cData = pixelsCopy.data;
+        for (var row = 0; row < height; row++)
+        {
+            var i = row * width * 4 + 4;
+            for (var col = 1; col < width; col++, i += 4)
+            {
+                var dy = MY - row,
+                    dx = MX - col,
+                    dd = dx * dx + dy * dy,
+                    d = Math.sqrt(dd),
+                    pull = D / d,//     D*D/dd   D/d             //扭曲度可以改这里
+                    mx = col - dx * pull,
+                    my = row - dy * pull,
+                    moveX = parseInt(mx) * 4,
+                    moveY = parseInt(my) * width * 4 + 4,
+                    moveNum = moveY + moveX;
+//                            if(true){
+//                                debugger;
+//                                return;
+                if (mx < width && my < height && mx > 0 && my > 0)
+                {
+                    data[i] = cData[moveNum];
+                    data[i + 1] = cData[moveNum + 1];
+                    data[i + 2] = cData[moveNum + 2];
+                    data[i + 3] = cData[moveNum + 3];
+                }
+                else
+                {
+                    data[i] = 255;
+                    data[i + 1] = 255;
+                    data[i + 2] = 255;
+                    data[i + 3] = 255;
+                }
+            }
+        }
+        ctx.putImageData(pixels, x, y);
+    }
+}
+
+canvas.onmousedown = function (e) {
+    tf.smear(e.pageX, e.pageY);
+    canvas.onmousemove = function(e) {
+        requestAnimationFrame(function() {
+                                  tf.smear(e.pageX, e.pageY);
+                              });
+    };
+    canvas.onmouseup = function() {
+        canvas.onmousemove = null;
+        canvas.onmouseup = null;
+    };
+}
+</script>
+    <script src="./canvasTool.js"></script>
+  </body>
+</html>

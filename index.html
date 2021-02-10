@@ -16,10 +16,233 @@
 	<link rel="stylesheet" type="text/css" href="css/about.css">
 	<link rel="stylesheet" type="text/css" href="css/process.css">
 	<link rel="stylesheet" href="css/mp/mplayer.css">
-	<script src="js/jquery-3.0.0.js"></script>
-	<script src="js/project.js"></script>
-	<script src="js/zzbaidu.js"></script>
+    <!--live2d-->
+    <link rel="stylesheet" href="./live2d/font-awesome.min.css">
+    <link href="./live2d/waifu.css" rel="stylesheet" type="text/css">
+
+<style>* {
+    margin:0;
+    padding:0;
+}
+.cbox {
+    width:200px;
+    height:200px;
+   // background:green;
+    animation:rotate2 2s infinite linear;
+    margin:120px;
+}
+.comical {
+    width:200px;
+    height:200px;
+    background:#fd8;
+    border:5px solid #ea5;
+    border-radius:50%;
+    box-shadow:3px 8px 20px 2px rgba(0,0,0,0.3),0 0 20px 10px rgba(238,170,85,0.7) inset, -10px -20px 20px 20px rgba(244,151,58,0.3) inset;
+    position:relative;
+    transform-origin:50% 100%;
+    animation:rotate3 0.5s infinite linear;
+}
+.mouth {
+    width:160px;
+    height:140px;
+    border-bottom:6px solid #533;
+    border-left:0px solid transparent;
+    border-right:0px solid transparent;
+    border-radius:50%/50%;
+    position:absolute;
+    bottom:25px;
+    left:20px;
+}
+.eye {
+    position:absolute;
+    top:-10px;
+    transform:rotate(45deg);
+}
+.eye_l {
+    left:40px;
+}
+.eye_r {
+    left:160px;
+}
+.e1 {
+    position:absolute;
+    top:3px;
+    left:3px;
+    width:76px;
+    height:76px;
+    overflow:hidden;
+}
+.e1::before {
+    content:"";
+    width:300px;
+    height:300px;
+    position:absolute;
+    border:20px solid #fff;
+    border-radius:120px;
+}
+.e2 {
+    position:absolute;
+    top:0;
+    left:0;
+    width:70px;
+    height:70px;
+    overflow:hidden;
+}
+.e3 {
+    position:absolute;
+    top:14px;
+    left:14px;
+    width:65px;
+    height:65px;
+    overflow:hidden;
+}
+.e2::before, .e3::before {
+    content:"";
+    width:300px;
+    height:300px;
+    position:absolute;
+    border:5px solid #fb7;
+    border-radius:120px;
+}
+.e4 {
+    position:absolute;
+    top:72px;
+    left:9px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+    transform:rotate(-160deg);
+}
+.e5 {
+    position:absolute;
+    top:15px;
+    left:66px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+    transform:rotate(70deg);
+}
+.e4::before, .e5::before {
+    content:"";
+    position:absolute;
+    width:14px;
+    height:14px;
+    border:5px solid #fb7;
+    border-radius:120px;
+}
+.e6 {
+    position:absolute;
+    top:62px;
+    left:17px;
+    width:15px;
+    height:15px;
+    background:#433;
+    border-radius:10px;
+}
+.eyebrow {
+    width:40px;
+    height:40px;
+    border-top:7px solid #444;
+    border-radius:30px;
+    border-left:0px solid transparent;
+    border-right:0px solid transparent;
+    position:absolute;
+    top:10px;
+}
+.eyebrow_l {
+    left:20px;
+    transform:rotate(20deg);
+}
+.eyebrow_r {
+    left:140px;
+    transform:rotate(-20deg);
+}
+.flush {
+    width:40px;
+    height:20px;
+    border-radius:50%/50%;
+    box-shadow:0 10px 6px 5px rgba(255,80,150,0.3) inset;
+    position:absolute;
+    top:70px;
+}
+.flush_l {
+    left:12px;
+}
+.flush_r {
+    left:148px;
+}
+@keyframes rotate1 {
+    0% {
+    transform:rotate(0deg);
+}
+5% {
+    transform:rotate(15deg);
+}
+10% {
+    transform:rotate(0deg);
+}
+15% {
+    transform:rotate(-15deg);
+}
+20% {
+    transform:rotate(0deg);
+}
+25% {
+    transform:rotate(10deg);
+}
+30% {
+    transform:rotate(0deg);
+}
+35% {
+    transform:rotate(-10deg);
+}
+40% {
+    transform:rotate(0deg);
+}
+45% {
+    transform:rotate(5deg);
+}
+50% {
+    transform:rotate(0deg);
+}
+55% {
+    transform:rotate(-5deg);
+}
+60% {
+    transform:rotate(0deg);
+}
+}   @keyframes rotate2 {
+    0% {
+    transform:rotate(0deg);
+}
+25% {
+    transform:rotate(-15deg);
+}
+50% {
+    transform:rotate(0deg);
+}
+75% {
+    transform:rotate(15deg);
+}
+100% {
+    transform:rotate(0deg);
+}
+}   @keyframes rotate3 {
+    0% {
+    transform:scaleY(1);
+}
+50% {
+    transform:scaleY(1.1);
+}
+100% {
+    transform:scaleY(1);
+}
+}</style>
   </head>
+  <script src="js/jquery-3.0.0.js"></script>
+  <script src="js/project.js"></script>
+  <script src="js/zzbaidu.js"></script>
+  <script src="./live2d/autoload.js"></script>
 
   <body onload="loaddone()">
 	<header class="head">
@@ -39,6 +262,33 @@
           </ul>
         </nav>
       </div>
+
+      <!--<div class="cbox">
+      <div class="comical">
+      <div class="mouth"></div>
+      <div class="eye eye_l">
+      <div class="e1"></div>
+      <div class="e2"></div>
+      <div class="e3"></div>
+      <div class="e4"></div>
+      <div class="e5"></div>
+      <div class="e6"></div>
+      </div>
+      <div class="eye eye_r">
+      <div class="e1"></div>
+      <div class="e2"></div>
+      <div class="e3"></div>
+      <div class="e4"></div>
+      <div class="e5"></div>
+      <div class="e6"></div>
+      </div>
+      <div class="eyebrow eyebrow_l"></div>
+      <div class="eyebrow eyebrow_r"></div>
+      <div class="flush flush_l"></div>
+      <div class="flush flush_r"></div>
+      </div>
+      </div>-->
+
       <div class = "wyy">
         <!--<iframe src="//player.bilibili.com/player.html?aid=667889275&bvid=BV1pa4y147NK&cid=182521238&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>-->          
         <!--<iframe   src="https://web.ewt360.com/tiku_h5/index/#/answer/paper?paperid=503&reportid=822147828123140096&platform=9&userid=116783643&bizCode=100&token=116783643-2-e351610e073f0b60&referUrl=cXVlc3Rpb25fYnJ1c2hfcXVlc3Rpb24=" width="500" height="500"   frameborder="1/0"  name="iframe名称"     scrolling="yes/no/auto">   </iframe>-->
@@ -145,30 +395,30 @@
         <div class="box_content box03_content">
           <ul id="timeUl" class="timeUl">
             <!--<li>
-              <div>
-                <h1>2020.12.16</h1>
-                <p>去了一个重要的地方,</p>
-                <p>遇到一个重要的人。</p>
-                <p>也许会因此而改变吧</p>
-              </div>
+            <div>
+            <h1>2020.12.16</h1>
+            <p>去了一个重要的地方,</p>
+            <p>遇到一个重要的人。</p>
+            <p>也许会因此而改变吧</p>
+            </div>
             </li>
 
             <li>
-              <div>
-                <h1>2020.12.17</h1>
-                <p>可能是最后一面了,</p>
-                <p>下定决心要改变某些事情.</p>
-              </div>
+            <div>
+            <h1>2020.12.17</h1>
+            <p>可能是最后一面了,</p>
+            <p>下定决心要改变某些事情.</p>
+            </div>
             </li>
 
             <li>
-              <div>
-                <h1>2020.12.25</h1>
-                <p>这天是圣诞节呢,</p>
-                <p>决心开始动摇了,</p>
-                <p>不知道后面还能不能坚持下去.</p>
-                <p>加油!</p>
-              </div>
+            <div>
+            <h1>2020.12.25</h1>
+            <p>这天是圣诞节呢,</p>
+            <p>决心开始动摇了,</p>
+            <p>不知道后面还能不能坚持下去.</p>
+            <p>加油!</p>
+            </div>
             </li>-->
 
           </ul>
@@ -278,6 +528,21 @@
 	<script src="js/mp/mplayer-list.js"></script>
 	<script src="js/mp/jquery.nstSlider.min.js"></script>
 	<script src="js/mp/mplayer-main.js"></script>
+<script>
+//document.onmousemove = function(e) {
+//    var box = document.getElementsByClassName("box");
+//    var x = e.clientX / 100 + 25 + "px";
+//    var y = e.clientY / 100 + 50 + "px";
+//    var log = "result(" + x + "," + y + ")";
+//    var eye = document.getElementsByClassName("e6");
+//    for (var i = 0; i < eye.length; i++)
+//    {
+//        eye[i].style.top = y;
+//        eye[i].style.left = x;
+//        //alert(e.clientX+","+e.clientY+","+log);
+//    }
+//}
+</script>
   </body>
 
 </html>
