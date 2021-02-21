@@ -126,7 +126,7 @@ var show_date_timer = setInterval(show_date_time, 1000);
 function show_count(){
     var ct = document.getElementsByName('show_count');
     for (var i = 0; i < ct.length; i++) {
-        ct[i].innerText = "网页访问次数:" + last.cont;
+        ct[i].innerText = "你的个人访问次数:" + last.cont;
 	}
 }
 var show_counter = setInterval(show_count, 1000);
